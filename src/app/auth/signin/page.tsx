@@ -64,7 +64,7 @@ export default function Page() {
           </Text>
 
           <Image
-            src="/images/auth.png"
+            src="/images/rent-a-thing-removebg.png"
             width={2000}
             height={2000}
             alt="auth"

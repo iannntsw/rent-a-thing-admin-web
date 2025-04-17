@@ -1,8 +1,9 @@
 // lib/api/auth.ts
 
 export async function signUp(data: any) {
+
   console.log(process.env.NEXT_PUBLIC_BACKEND_API)
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/users/createUser`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/auth/createUser`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,9 +1,13 @@
+import { authHeaders } from "../utils";
+
 export async function getUserById(userId: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/users/getUser/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
+                ...authHeaders(),
+
             },
         });
 

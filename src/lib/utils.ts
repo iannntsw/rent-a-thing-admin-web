@@ -27,3 +27,26 @@ export const formatRating = (ratings: number) => {
         (_, idx) => idx + 1,
     );
 };
+
+function getAccessToken() {
+    return localStorage.getItem('token');
+}
+
+export function authHeaders() {
+    const token = getAccessToken();
+    return {
+        Authorization: `Bearer ${token}`,
+    };
+}
+
+export function formatDateString(dateStr: string, locale = "en-SG", options?: Intl.DateTimeFormatOptions) {
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return "Invalid Date";
+
+    return date.toLocaleDateString(locale, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        ...options,
+    });
+}
