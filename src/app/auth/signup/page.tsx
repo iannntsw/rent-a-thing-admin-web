@@ -18,7 +18,7 @@ export default function Page() {
     username: "",
     email: "",
     phoneNumber: "",
-    userType: "CUSTOMER", // default value
+    userType: "ADMIN", // default value
     profilePicture: "", // optional, can leave empty
   });
   const [error, setError] = useState("");
@@ -37,7 +37,7 @@ export default function Page() {
     try {
       const response = await signUp(formData);
       console.log("Success: ", response);
-      router.push("/sign-in");
+      router.push("/auth/signin");
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     }
@@ -62,7 +62,7 @@ export default function Page() {
             weight={500}
             className="absolute left-0 top-8 w-full text-center"
           >
-            Rent A Thing
+            Rent-A-Thing
           </Text>
           <Image
             src="/images/auth.png"
@@ -92,7 +92,7 @@ export default function Page() {
               <Text weight={400} color="gray">
                 Already have an account?{" "}
                 <span className="font-semibold text-[#38CB89] hover:underline">
-                  <Link href="/sign-in">Sign In</Link>
+                  <Link href="/auth/signin">Sign In</Link>
                 </span>
               </Text>
             </div>
