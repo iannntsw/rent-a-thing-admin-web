@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Text from "@/ui/text";
-import Button from "@/ui/button";
+import Text from "@/app/ui/text";
+import Button from "@/app/ui/button";
 import Input from "@/form/input";
 import { cn } from "@/lib/utils";
 import { signUp } from "@/lib/api/auth";
