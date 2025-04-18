@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Text from "@/app/ui/text";
 import Button from "@/app/ui/button";
-import Input from "@/app/form/input";
+import Input from "@/components/form/input";
 import { cn } from "@/lib/utils";
 import { signUp } from "@/lib/api/auth";
 import { useRouter } from "next/navigation";

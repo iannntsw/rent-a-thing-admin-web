@@ -1,3 +1,5 @@
+import { authHeaders } from "../utils";
+
 export async function createBooking({
     listingId,
     startDate,
@@ -176,9 +178,9 @@ export async function getAllBookings(accessToken: string) {
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_API}/api/bookings/getBooking`,
         {
-        headers: {
-            Authorization: `Bearer ${accessToken}`,
-        },
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
         }
     );
 
@@ -191,20 +193,20 @@ export async function getAllBookings(accessToken: string) {
 
 export async function deleteBooking(bookingId: string, accessToken: string) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API}/api/bookings/deleteBooking/${bookingId}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/bookings/deleteBooking/${bookingId}`,
+        {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
     );
-  
+
     if (!res.ok) {
-      const error = await res.text();
-      throw new Error(error || "Failed to delete booking");
+        const error = await res.text();
+        throw new Error(error || "Failed to delete booking");
     }
-  
+
     return await res.json();
-  }
-  
+}
+

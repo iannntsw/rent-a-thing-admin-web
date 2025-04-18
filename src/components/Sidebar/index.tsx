@@ -229,15 +229,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       >
         {/* <!-- SIDEBAR HEADER --> */}
         <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-          <Link href="/">
+          <Link href="/" className="flex items-center space-x-2">
             <Image
-              width={176}
+              width={80}
               height={32}
-              //TODO : Add logo image
-              src={"/images/logo/logo.svg"}
+              src="/images/rent-a-thing-removebg.png"
               alt="Logo"
               priority
             />
+            <span className="text-xl font-semibold text-white dark:text-white">
+              Rent-A-Thing
+            </span>
           </Link>
 
           <button

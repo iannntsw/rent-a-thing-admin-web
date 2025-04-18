@@ -23,7 +23,7 @@ import {
   createBooking,
   getLatestBooking,
   updateBooking,
-} from "@/lib/api/bookings";
+} from "@/app/lib/api/bookings";
 import { getListingById } from "@/lib/api/listings";
 import ReviewDialog from "../review-dialog";
 
