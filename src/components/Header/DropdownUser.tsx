@@ -21,14 +21,18 @@ const DropdownUser = () => {
   const [navSearch, setNavSearch] = useState("");
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
-    console.log("userId", userId);
     if (userId) {
       getUserById(userId)
         .then(setUser)
-        .catch((err) => console.error("Failed to fetch user:", err));
+        .catch((err) => console.error("Failed to fetch user:", err))
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
   }, []);
 

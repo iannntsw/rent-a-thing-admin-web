@@ -30,6 +30,7 @@ export default function Page() {
 
     try {
       const response = await signInUser({ email, password });
+      //localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userId", response.user.userId);
       localStorage.setItem("userEmail", response.user.email);

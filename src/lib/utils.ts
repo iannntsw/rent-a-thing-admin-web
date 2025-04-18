@@ -34,6 +34,7 @@ function getAccessToken() {
 
 export function authHeaders() {
     const token = getAccessToken();
+    console.log("token", token);
     return {
         Authorization: `Bearer ${token}`,
     };

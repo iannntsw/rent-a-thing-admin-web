@@ -12,7 +12,7 @@ import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getUserById, updateUserProfile } from "@/lib/api/user";
+import { getUserById, toggleActiveStatus, updateUserProfile } from "@/lib/api/user";
 import { formatDateString } from "@/lib/utils";
 import Swal from "sweetalert2";
 
@@ -39,6 +39,7 @@ const Profile = ({
     email: "",
     profilePicture: "",
     phoneNumber: "",
+    userType: "",
   });
   const [previewImage, setPreviewImage] = useState<string>("");
 
@@ -51,6 +52,7 @@ const Profile = ({
         if (userId) {
           const userData = await getUserById(userId);
           setUser(userData);
+          console.log("userData", userData);
           setEditForm({
             firstName: userData.firstName || "",
             lastName: userData.lastName || "",
@@ -58,6 +60,7 @@ const Profile = ({
             email: userData.email || "",
             profilePicture: userData.profilePicture || "",
             phoneNumber: userData.phoneNumber || "",
+            userType: userData.userType || "",
           });
         }
       } catch (err) {
@@ -106,10 +109,12 @@ const Profile = ({
   return (
     <DefaultLayout>
       <div className="mx-auto max-w-242.5">
-        <Breadcrumb pageName="Profile" />
+        <h2 className="text-title-md2 font-semibold text-black dark:text-white">
+          {userId !== loggedInUserId ? "User Profile" : "My Profile"}
+        </h2>
 
         <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="relative z-20 h-20 md:h-30">
+          <div className="relative z-20 h-20 md:h-10">
 
             <div className="absolute top-1 right-1 z-10 xsm:top-4 xsm:right-4">
 
@@ -142,6 +147,9 @@ const Profile = ({
                 <p className="text-gray-600">@{user.username}</p>
               </div>
               <p>
+                <strong>User Type:</strong> {user.userType}
+              </p>
+              <p>
                 <strong>Email:</strong> {user.email}
               </p>
               <p>
@@ -152,10 +160,135 @@ const Profile = ({
                 {formatDateString(new Date(user.createdAt).toISOString())}
               </p> */}
             </div>
+            <div className="flex flex-col items-center gap-2 py-4">
+              <p><strong>Current Status:{" "}</strong>
+                <span
+                  className={`font-semibold ${user.isActive ? "text-green-600" : "text-red-500"
+                    }`}
+                >
+                  {user.isActive ? "Active" : "Inactive"}
+                </span>
+              </p>
+
+              <button
+                className={`rounded px-4 py-2 text-sm font-medium text-white ${user.isActive ? "bg-red-500 hover:bg-red-600" : "bg-green-600 hover:bg-green-700"
+                  }`}
+                onClick={async () => {
+                  try {
+                    const updated = await toggleActiveStatus(user.email, !user.isActive);
+                    setUser((prev: any) => ({
+                      ...prev,
+                      isActive: updated.isActive,
+                    }));
+
+                    await Swal.fire({
+                      icon: "success",
+                      title: `User ${updated.isActive ? "activated" : "deactivated"
+                        } successfully`,
+                    });
+                  } catch (err: any) {
+                    console.error(err);
+                    await Swal.fire({
+                      icon: "error",
+                      title: "Action Failed",
+                      text: err?.message || "Could not change user activation status.",
+                    });
+                  }
+                }}
+              >
+                {user.isActive ? "Deactivate" : "Activate"}
+              </button>
+            </div>
+
+
           </div>
 
 
         </div>
+        {user.userType === "CUSTOMER" && (
+          <div className="mt-10 space-y-6">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Listings</h2>
+
+            {user.listings?.length > 0 ? (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {user.listings.map((listing: any) => (
+                  <Link
+                    key={listing.listingId}
+                    href={`/products/${listing.listingId}`}
+                    className="rounded-lg border border-stroke bg-white p-4 shadow-sm transition hover:shadow-md dark:border-strokedark dark:bg-boxdark"
+                  >
+                    <Image
+                      src={(() => {
+                        try {
+                          const parsed = JSON.parse(listing.images || "[]");
+                          return parsed?.[0] || "/images/default-product.png";
+                        } catch {
+                          return "/images/default-product.png";
+                        }
+                      })()}
+                      alt={listing.title}
+                      width={300}
+                      height={160}
+                      className="mb-3 h-40 w-full rounded-md object-cover"
+                      unoptimized
+                    />
+                    <h3 className="text-base font-semibold text-gray-800 dark:text-white">
+                      {listing.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      ${listing.pricePerDay}/day
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-600 dark:text-gray-400">
+                This customer does not have any listings.
+              </p>
+            )}
+
+            {user.bookings?.length > 0 ? (
+              <div className="mt-10">
+                <h2 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-white">Bookings</h2>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full table-auto border border-gray-200 text-left text-sm dark:border-gray-700">
+                    <thead className="bg-gray-100 dark:bg-gray-800">
+                      <tr>
+                        <th className="p-3">Booking ID</th>
+                        <th className="p-3">Listing</th>
+                        <th className="p-3">Start</th>
+                        <th className="p-3">End</th>
+                        <th className="p-3">Total</th>
+                        <th className="p-3">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {user.bookings.map((b: any) => (
+                        <tr key={b.bookingId} className="border-b hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-900">
+                          <td className="p-3">{b.bookingId}</td>
+                          <td className="p-3">{b.rentee?.email || "-"}</td>
+                          <td className="p-3">{b.listing?.title || "-"}</td>
+                          <td className="p-3">{new Date(b.startDate).toLocaleDateString()}</td>
+                          <td className="p-3">{new Date(b.endDate).toLocaleDateString()}</td>
+                          <td className="p-3">${b.totalPrice}</td>
+                          <td className="p-3">{b.status}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-10">
+                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Bookings</h2>
+                <p className="text-gray-600 dark:text-gray-400">This customer does not have any bookings.</p>
+              </div>
+            )}
+
+          </div>
+        )}
+
         <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
           <DialogContent>
             <DialogHeader>
