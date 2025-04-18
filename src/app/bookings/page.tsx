@@ -24,7 +24,7 @@ export default function BookingsPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken"); // Assuming you saved it after login
+    const token = localStorage.getItem("token");
     if (!token) {
       setError("No access token found");
       setLoading(false);
