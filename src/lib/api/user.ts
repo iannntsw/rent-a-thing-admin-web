@@ -39,6 +39,7 @@ export async function updateUserProfile(
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
+                ...authHeaders(),
             },
             body: JSON.stringify(data),
         }

@@ -37,6 +37,16 @@ const DropdownUser = () => {
     router.push("/auth/signin");
   };
 
+  const toBase64 = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+
+  if (!user) return <div className="p-6">Loading profile...</div>;
+
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       {user ? (
@@ -57,7 +67,7 @@ const DropdownUser = () => {
               <Image
                 width={112}
                 height={112}
-                src={"/images/default-profile.png"}
+                src={user?.profilePicture || "/images/default-profile.png"}
                 style={{ width: "auto", height: "auto" }}
                 alt="User"
               />
@@ -85,8 +95,8 @@ const DropdownUser = () => {
               <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
                 <li>
                   <Link
-                    //href={`/profile/${user.userId}`}
-                    href={`/profile`}
+                    href={`/profile/${user.userId}`}
+                    //href={`/profile`}
                     className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                   >
                     {/* Profile Icon */}
