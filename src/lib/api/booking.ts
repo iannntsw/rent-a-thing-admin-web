@@ -171,3 +171,20 @@ export async function createReview(payload: {
 
     return await res.json();
 }
+
+export async function getAllBookings(accessToken: string) {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/bookings/getBooking`,
+        {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+        }
+    );
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch bookings");
+    }
+
+    return res.json();
+}
