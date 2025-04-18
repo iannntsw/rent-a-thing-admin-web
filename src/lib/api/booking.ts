@@ -188,3 +188,23 @@ export async function getAllBookings(accessToken: string) {
 
     return res.json();
 }
+
+export async function deleteBooking(bookingId: string, accessToken: string) {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_API}/api/bookings/deleteBooking/${bookingId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+  
+    if (!res.ok) {
+      const error = await res.text();
+      throw new Error(error || "Failed to delete booking");
+    }
+  
+    return await res.json();
+  }
+  

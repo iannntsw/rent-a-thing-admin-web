@@ -45,7 +45,7 @@ const DropdownUser = () => {
       reader.onerror = (error) => reject(error);
     });
 
-  if (!user) return <div className="p-6">Loading profile...</div>;
+  //if (!user) return <div className="p-6">Loading profile...</div>;
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">

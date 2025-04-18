@@ -18,7 +18,7 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("token");
     if (token) {
       router.replace("/");
     }
@@ -30,7 +30,7 @@ export default function Page() {
 
     try {
       const response = await signInUser({ email, password });
-      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userId", response.user.userId);
       localStorage.setItem("userEmail", response.user.email);
       localStorage.setItem("username", response.user.username);
