@@ -22,6 +22,9 @@ export default function BookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [bookingToDelete, setBookingToDelete] = useState<string | null>(null);
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -51,6 +54,24 @@ export default function BookingsPage() {
       setError(err.message || "Failed to delete booking");
     }
   };
+
+  const openDeleteModal = (bookingId: string) => {
+    setBookingToDelete(bookingId);
+    setShowModal(true);
+  };
+  
+  const confirmDelete = async () => {
+    if (bookingToDelete) {
+      await handleDelete(bookingToDelete);
+      setShowModal(false);
+      setBookingToDelete(null);
+    }
+  };
+  
+  const cancelDelete = () => {
+    setShowModal(false);
+    setBookingToDelete(null);
+  };  
 
   return (
     <DefaultLayout>
@@ -85,12 +106,12 @@ export default function BookingsPage() {
                 <td className="p-3">${b.totalPrice}</td>
                 <td className="p-3">{b.status}</td>
                 <td className="p-3">
-                  <button
-                    className="text-red-500 hover:underline"
-                    onClick={() => handleDelete(b.bookingId)}
-                  >
-                    Delete
-                  </button>
+                <button
+                  className="text-red-500 hover:underline"
+                  onClick={() => openDeleteModal(b.bookingId)}
+                >
+                  Delete
+                </button>
                 </td>
               </tr>
             ))}
@@ -98,6 +119,30 @@ export default function BookingsPage() {
           </table>
         </div>
       )}
+      {showModal && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+        <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+          <h2 className="text-lg font-semibold mb-4">Confirm Deletion</h2>
+          <p className="mb-6">
+            Are you sure you want to delete this booking? This action cannot be undone.
+          </p>
+          <div className="flex justify-end gap-3">
+            <button
+              className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+              onClick={cancelDelete}
+            >
+              Cancel
+            </button>
+            <button
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              onClick={confirmDelete}
+            >
+              Yes, Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
     </DefaultLayout>
   );
 }
