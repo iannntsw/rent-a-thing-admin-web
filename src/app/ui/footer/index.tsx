@@ -5,8 +5,8 @@ import Link from "next/link";
 import SectionLayout from "@/layouts/sectionLayout";
 
 // ui
-import Text from "@/ui/text";
-import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/ui/assets/svg";
+import Text from "@/components/ui/text";
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/ui/assets/svg";
 
 const Footer = () => {
   return (

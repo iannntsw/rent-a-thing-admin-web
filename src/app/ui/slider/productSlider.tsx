@@ -7,7 +7,7 @@ import { useKeenSlider } from "keen-slider/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 // ui
-import ProductThumbnailSlider from "@/ui/slider/productThumbnailSlider";
+import ProductThumbnailSlider from "@/components/ui/slider/productThumbnailSlider";
 
 // lib
 import { cn } from "@/lib/utils";

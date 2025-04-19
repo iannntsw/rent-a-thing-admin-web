@@ -23,7 +23,7 @@ import {
   createBooking,
   getLatestBooking,
   updateBooking,
-} from "@/app/lib/api/bookings";
+} from "@/lib/api/booking";
 import { getListingById } from "@/lib/api/listings";
 import ReviewDialog from "../review-dialog";
 
@@ -105,7 +105,7 @@ export default function ChatPage({
     };
 
     fetchLatestBooking();
-  }, [listingId, messages, isRenter]);
+  }, [listingId, messages, isRenter, userEmail]);
 
   useEffect(() => {
     const q = query(

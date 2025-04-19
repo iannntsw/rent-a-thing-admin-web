@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { createReview } from "@/lib/api/bookings";
+import { createReview } from "@/lib/api/booking";
 
 export default function ReviewDialog({
   listingId,

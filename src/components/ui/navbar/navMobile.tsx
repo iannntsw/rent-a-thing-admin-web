@@ -2,8 +2,8 @@
 import Link from "next/link";
 
 // ui
-import Logo from "@/ui/assets/logo";
-import Button from "@/ui/button";
+import Logo from "@/components/ui/assets/logo";
+import Button from "@/components/ui/button";
 import {
   CartIcon,
   CloseIcon,
@@ -13,7 +13,7 @@ import {
   SearchIcon,
   WishlistIcon,
   YoutubeIcon,
-} from "@/ui/assets/svg";
+} from "@/components/ui/assets/svg";
 
 // lib
 import { cn } from "@/lib/utils";

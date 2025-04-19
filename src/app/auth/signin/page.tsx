@@ -31,7 +31,6 @@ export default function Page() {
     try {
       const response = await signInUser({ email, password });
       //localStorage.setItem("accessToken", response.accessToken);
-      console.log("response", response);
       if (response.user.role === "CUSTOMER") {
         setError("Customers are not allowed to sign in to the admin portal.");
         return;
@@ -92,12 +91,6 @@ export default function Page() {
               <h1 className="font-poppins text-[40px] font-medium text-[#121212]">
                 Sign In
               </h1>
-              {/* <Text weight={400} color="gray">
-                Don&apos;t have an account yet?{" "}
-                <span className="font-semibold text-black hover:underline">
-                  <Link href="/auth/signup">Sign Up</Link>
-                </span>
-              </Text> */}
             </div>
 
             <form onSubmit={handleSignIn} className="space-y-8">

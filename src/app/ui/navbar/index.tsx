@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import Logo from "@/ui/assets/logo";
+import Logo from "@/components/ui/assets/logo";
 import {
   WishlistIcon,
   HamburgerMenu,
   ChatIcon,
-} from "@/ui/assets/svg";
-import NavLinks from "@/ui/navbar/navLinks";
-import NavMobile from "@/ui/navbar/navMobile";
+} from "@/components/ui/assets/svg";
+import NavLinks from "@/components/ui/navbar/navLinks";
+import NavMobile from "@/components/ui/navbar/navMobile";
 import { useRootContext } from "@/hooks/rootContext";
 import { cn } from "@/lib/utils";
 

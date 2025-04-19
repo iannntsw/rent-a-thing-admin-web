@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
-import * as ProductCard from "@/ui/card/productCard";
+import * as ProductCard from "@/components/ui/card/productCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import "keen-slider/keen-slider.min.css";

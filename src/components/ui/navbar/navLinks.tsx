@@ -3,8 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 // ui
-import NavDropdown from "@/ui/navbar/navDropdown";
-import { NavLinkProps } from "@/ui/navbar/definition";
+import NavDropdown from "@/components/ui/navbar/navDropdown";
+import { NavLinkProps } from "@/components/ui/navbar/definition";
 
 // lib
 import { cn } from "@/lib/utils";

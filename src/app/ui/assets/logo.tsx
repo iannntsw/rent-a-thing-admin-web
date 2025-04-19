@@ -1,4 +1,4 @@
-import Text from "@/ui/text";
+import Text from "@/components/ui/text"
 
 export default function Logo() {
   return (

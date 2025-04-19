@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 // ui
-import { ArrowRightIcon, CloseIcon, DiscountIcon } from "@/ui/assets/svg";
+import { ArrowRightIcon, CloseIcon, DiscountIcon } from "@/components/ui/assets/svg";
 
 // hooks
 import { useRootContext } from "@/hooks/rootContext";

@@ -6,9 +6,9 @@ import { default as NextImage, ImageProps as NextImageProps } from "next/image";
 import { VariantProps, cva } from "class-variance-authority";
 
 // ui
-import ButtonPrimitive, { ButtonProps } from "@/ui/button";
-import Text, { TextProps } from "@/ui/text";
-import { StarIcon, WishlistIcon } from "@/ui/assets/svg";
+import ButtonPrimitive, { ButtonProps } from "@/components/ui/button";
+import Text, { TextProps } from "@/components/ui/text";
+import { StarIcon, WishlistIcon } from "@/components/ui/assets/svg";
 
 // lib
 import { cn, formatCurrency, formatRating } from "@/lib/utils";
