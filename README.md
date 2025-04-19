@@ -1,3 +1,19 @@
+RentAThing Admin
+
+- Upon starting of database, default admin is created:
+    - Email : admin@gmail.com
+    - Password : password
+- Admins will need to created on the backend and admin portal will not allow creation of new admins
+
+Deployment:
+Execute 
+npm install
+npm run dev 
+
+NOTE:
+Ensure that admin portal is running on http://localhost:3000
+
+
 # TailAdmin Next.js - Free Next.js Tailwind Admin Dashboard Template
 
 TailAdmin is a free and open-source admin dashboard template built on **Next.js and Tailwind CSS** providing developers with everything they need to create a feature-rich and data-driven: back-end, dashboard, or admin panel solution for any sort of web project.
