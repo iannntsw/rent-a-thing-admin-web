@@ -3,8 +3,8 @@ import HomeClient from "./home-client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Rent-A-Thing",
-    description: "Welcome to Rent-A-Thing",
+    title: "RentAThing",
+    description: "Welcome to RentAThing",
 };
 
 export default function HomePage() {
