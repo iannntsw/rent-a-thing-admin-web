@@ -76,10 +76,14 @@ export default function BookingsPage() {
     setBookingToDelete(null);
   };
 
-  // Filter bookings based on the search query (Booking ID)
-  const filteredBookings = bookings.filter((booking) =>
-    booking.bookingId.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredBookings = bookings.filter((booking) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      booking.bookingId.toLowerCase().includes(query) ||
+      booking.rentee?.email.toLowerCase().includes(query)
+    );
+  });
+
 
   return (
     <DefaultLayout>
@@ -87,7 +91,7 @@ export default function BookingsPage() {
 
       <input
         type="text"
-        placeholder="Search by Booking ID..."
+        placeholder="Search by Booking ID or User Email..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         className="mb-4 w-full p-2 border border-gray-300 rounded"

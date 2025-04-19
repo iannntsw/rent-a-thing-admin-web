@@ -302,7 +302,7 @@ const Profile = ({
               </p>
             )}
 
-            {bookings?.length > 0 ? (
+            {/* {bookings?.length > 0 ? (
               <div className="mt-10">
                 <h2 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-white">Bookings</h2>
                 <div className="overflow-x-auto">
@@ -348,9 +348,9 @@ const Profile = ({
                 <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Bookings</h2>
                 <p className="text-gray-600 dark:text-gray-400">This customer does not have any bookings.</p>
               </div>
-            )}
+            )} */}
 
-            {showModal && (
+            {/* {showModal && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
                 <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
                   <h2 className="text-lg font-semibold mb-4">Confirm Deletion</h2>
@@ -373,7 +373,7 @@ const Profile = ({
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
 
           </div>
         )}
