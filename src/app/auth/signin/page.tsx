@@ -61,7 +61,7 @@ export default function Page() {
             weight={500}
             className="absolute left-0 top-8 w-full text-center"
           >
-            Rent-A-Thing
+            RentAThing
           </Text>
 
           <Image

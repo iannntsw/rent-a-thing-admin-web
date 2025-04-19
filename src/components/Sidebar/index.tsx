@@ -238,7 +238,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               priority
             />
             <span className="text-xl font-semibold text-white dark:text-white">
-              Rent-A-Thing
+              RentAThing
             </span>
           </Link>
 
