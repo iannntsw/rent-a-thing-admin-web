@@ -1,14 +1,26 @@
-RentAThing Admin
+# RentAThing Admin
 
 - Upon starting of database, default admin is created:
     - Email : admin@gmail.com
     - Password : password
-- Admins will need to created on the backend and admin portal will not allow creation of new admins
+- Admins will need to be created on the backend
 
-Deployment:
-Execute 
-npm install
-npm run dev 
+## Getting Started
+First, install the packages:
+```bash
+npm i
+```
+
+Secondly, Create a .env file in the root of the project and Put the following
+```bash
+NEXT_PUBLIC_BACKEND_API="http://localhost:3001"
+```
+
+Lastly, run the development server:
+
+```bash
+npm run dev
+```
 
 NOTE:
 Ensure that admin portal is running on http://localhost:3000
